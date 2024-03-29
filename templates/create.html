@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Emita um Boleto {% endblock %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="title">CPF</label>
+        <input type="text" name="title"
+               placeholder="Incluir CPF Destino"
+               value="{{ request.form['title'] }}"></input>
+        <br>
+
+        <label for="content">Messagem ao Destinatário</label>
+        <textarea name="content"
+                  placeholder="Escreva uma Mensagem"
+                  rows="1"
+                  cols="0"
+                  >{{ request.form['content'] }}</textarea>
+                  <input type="file" name="pdf-file"
+                  class="bg-warning"
+                  value="{{ request.form['pdf-file'] }}"></input>
+        <button type="submit">Submit</button>
+            <br>
+
+    </form>
+{% endblock %}
