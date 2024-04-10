@@ -8,7 +8,7 @@ from PIL import Image
 import io
 import os
 from dotenv import load_dotenv
-
+import shutil
 load_dotenv()
 
 CNPJ = os.getenv('CNPJ')
@@ -98,6 +98,7 @@ def success():
 		img.save('output.png') # format may what you want *.png, *jpg, *.gif
 		page_qrcode.insert_image(pic3['rect'], filename="output.png")
 		doc.save(f.filename, incremental=True, encryption=0)
+		dest = shutil.move(f.filename, "/files/" + f.filename) 
 		
 	return render_template("Acknowledgement.html", name = (str(brcode)))
 if __name__ == '__main__': 
